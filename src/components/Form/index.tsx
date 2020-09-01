@@ -1,4 +1,4 @@
-import React, { useState, useRef, useCallback } from 'react';
+import React, { useState, useRef, useCallback, useEffect } from 'react';
 import { IconBaseProps } from 'react-icons';
 
 // import { Container } from './styles';
@@ -25,6 +25,12 @@ interface IProps {
 const Form: React.FC<IProps> = ({ children, handleSubmit, config }) => {
   const [formHasError, setFormHasError] = useState(false);
   const formRef = useRef<HTMLFormElement>(null);
+
+  useEffect(() => {
+    if (formHasError) {
+      setFormHasError(false);
+    }
+  }, [formHasError]);
 
   const handleError = useCallback(
     (value = '', validations: string[]): string => {
