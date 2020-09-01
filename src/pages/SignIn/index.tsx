@@ -1,9 +1,10 @@
 import React, { useState } from 'react';
 import { FiLogIn, FiMail, FiLock } from 'react-icons/fi';
 
+import { useAuth } from '../../context/AuthContext';
+
 import Button from '../../components/Button';
 import Form from '../../components/Form';
-
 import logoImg from '../../assets/logo.svg';
 import { Container, Content, Background, FormContainer } from './styles';
 
@@ -29,9 +30,11 @@ const inputsConfig = [
 
 const SignIn: React.FC = () => {
   const [formData, setFormData] = useState<IFormData>({});
+  const { signIn, user } = useAuth();
 
   const handleSubmit = (data: IFormData): void => {
-    setFormData(data);
+    const { email, password } = data;
+    signIn({ email, password });
   };
 
   return (

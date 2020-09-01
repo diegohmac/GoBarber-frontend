@@ -69,6 +69,7 @@ const Form: React.FC<IProps> = ({ children, handleSubmit, config }) => {
             return (
               <Input
                 {...input}
+                key={input.name}
                 handleError={handleError}
                 formHasError={formHasError}
               />
